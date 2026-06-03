@@ -1,0 +1,14 @@
+# sistem
+.DS_Store
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# javascript
+node_modules/
+dist/
+# gizli (asla yuklenmez)
+*.key
+.env
+serviceAccountKey*.json

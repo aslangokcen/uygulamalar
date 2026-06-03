@@ -1,0 +1,65 @@
+import type { AnalysisUnit, FocusProductConfig } from "./types";
+
+export const MONTHS = [
+  { value: 1, short: "Oca", label: "Ocak" },
+  { value: 2, short: "Şub", label: "Şubat" },
+  { value: 3, short: "Mar", label: "Mart" },
+  { value: 4, short: "Nis", label: "Nisan" },
+  { value: 5, short: "May", label: "Mayıs" },
+  { value: 6, short: "Haz", label: "Haziran" },
+  { value: 7, short: "Tem", label: "Temmuz" },
+  { value: 8, short: "Ağu", label: "Ağustos" },
+  { value: 9, short: "Eyl", label: "Eylül" },
+  { value: 10, short: "Eki", label: "Ekim" },
+  { value: 11, short: "Kas", label: "Kasım" },
+  { value: 12, short: "Ara", label: "Aralık" },
+] as const;
+
+export const ANALYSIS_UNITS: AnalysisUnit[] = ["M2", "KG", "Palet Sayısı"];
+
+export const DEFAULT_PRODUCTS: FocusProductConfig[] = [
+  { analysisUnit: "M2", product: "Abrasiv", keywords: ["ABRASIV", "ABRASIVE"] },
+  { analysisUnit: "KG", product: "Alubit Bilya", keywords: ["ALUBIT", "BILYA", "ALUBIT BILYA"] },
+  { analysisUnit: "KG", product: "Alumina", keywords: ["ALUMINA", "ALUMINYUM OKSIT"] },
+  { analysisUnit: "KG", product: "Cam Suyu", keywords: ["CAM SUYU", "SODYUM SILIKAT"] },
+  { analysisUnit: "Palet Sayısı", product: "Çember", keywords: ["CEMBER"] },
+  { analysisUnit: "KG", product: "Çinko Oksit", keywords: ["CINKO OKSIT", "ZINC OXIDE"] },
+  { analysisUnit: "Palet Sayısı", product: "Diğer Etiket", keywords: ["ETIKET", "LABEL"] },
+  { analysisUnit: "M2", product: "Dijital Boya", keywords: ["DIJITAL BOYA", "INKJET", "MUREKKEP"] },
+  { analysisUnit: "KG", product: "Dolamit", keywords: ["DOLAMIT", "DOLOMIT"] },
+  { analysisUnit: "KG", product: "Feldspat", keywords: ["FELDSPAT"] },
+  { analysisUnit: "M2", product: "Frit", keywords: ["FRIT"] },
+  { analysisUnit: "M2", product: "Granilya", keywords: ["GRANILYA", "GRANILIA"] },
+  { analysisUnit: "KG", product: "Kalsit", keywords: ["KALSIT"] },
+  { analysisUnit: "KG", product: "Kaolen", keywords: ["KAOLEN"] },
+  { analysisUnit: "KG", product: "Kil", keywords: ["KIL"] },
+  { analysisUnit: "KG", product: "Korund", keywords: ["KORUND", "KORUNDUM"] },
+  { analysisUnit: "Palet Sayısı", product: "Köşebent", keywords: ["KOSEBENT"] },
+  { analysisUnit: "KG", product: "Kuvars", keywords: ["KUVARS", "QUARTZ"] },
+  { analysisUnit: "KG", product: "Manyezit", keywords: ["MANYEZIT", "MAGNEZIT"] },
+  { analysisUnit: "M2", product: "Nano", keywords: ["NANO"] },
+  { analysisUnit: "Palet Sayısı", product: "Palet", keywords: ["PALET"] },
+  { analysisUnit: "Palet Sayısı", product: "Palet Aparat", keywords: ["PALET APARAT", "PALET APARATI"] },
+  { analysisUnit: "Palet Sayısı", product: "Palet Etiket", keywords: ["PALET ETIKET"] },
+  { analysisUnit: "M2", product: "Seramik Rulo", keywords: ["SERAMIK RULO", "RULO"] },
+  { analysisUnit: "Palet Sayısı", product: "Shiring", keywords: ["SHIRING", "SHRINK", "SHRINK FILM"] },
+  { analysisUnit: "KG", product: "Sıcak Tutkal", keywords: ["SICAK TUTKAL", "HOTMELT", "HOT MELT"] },
+  { analysisUnit: "KG", product: "STPP", keywords: ["STPP", "SODYUM TRIPOLIFOSFAT"] },
+  { analysisUnit: "Palet Sayısı", product: "Stretch Film", keywords: ["STRETCH", "STREC FILM", "STRETCH FILM"] },
+  { analysisUnit: "M2", product: "Wollastonite", keywords: ["WOLLASTONITE", "VOLASTONIT"] },
+  { analysisUnit: "M2", product: "Zirkon", keywords: ["ZIRKON", "ZIRCON"] },
+];
+
+export const PRODUCT_PRIORITY = [
+  "Palet Etiket",
+  "Palet Aparat",
+  "Stretch Film",
+  "Sıcak Tutkal",
+  "Çinko Oksit",
+  "Alubit Bilya",
+  "Dijital Boya",
+  "Seramik Rulo",
+  "Diğer Etiket",
+  "Shiring",
+  "Palet",
+];

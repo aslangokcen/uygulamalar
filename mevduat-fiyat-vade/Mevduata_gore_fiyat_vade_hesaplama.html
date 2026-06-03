@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satın Alma Teklif Kıyaslama</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 2rem 1rem;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .global-settings {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .company-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .company-card h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .winner {
+            background-color: var(--success-light);
+            border: 1px solid var(--success);
+            color: #065f46;
+        }
+
+        .loser {
+            background-color: var(--danger-light);
+            border: 1px solid var(--danger);
+            color: #991b1b;
+        }
+
+        .result-details {
+            margin-top: 1rem;
+            background: rgba(255,255,255,0.6);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .amount {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Satın Alma Teklif Kıyaslama Aracı</h2>
+
+    <div class="global-settings">
+        <div class="form-group" style="max-width: 300px; margin: 0 auto;">
+            <label for="interest">Güncel Mevduat Faizi (Yıllık %)</label>
+            <input type="number" id="interest" placeholder="Örn: 45" value="45" step="0.1">
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="company-card" id="cardA">
+            <h3>Firma A Teklifi</h3>
+            <div class="form-group">
+                <label for="priceA">Birim Fiyat (TL)</label>
+                <input type="number" id="priceA" placeholder="Örn: 100" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="qtyA">Miktar (Adet)</label>
+                <input type="number" id="qtyA" placeholder="Örn: 1000">
+            </div>
+            <div class="form-group">
+                <label for="daysA">Vade (Gün)</label>
+                <input type="number" id="daysA" placeholder="Örn: 60">
+            </div>
+        </div>
+
+        <div class="company-card" id="cardB">
+            <h3>Firma B Teklifi</h3>
+            <div class="form-group">
+                <label for="priceB">Birim Fiyat (TL)</label>
+                <input type="number" id="priceB" placeholder="Örn: 150" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="qtyB">Miktar (Adet)</label>
+                <input type="number" id="qtyB" placeholder="Örn: 1000">
+            </div>
+            <div class="form-group">
+                <label for="daysB">Vade (Gün)</label>
+                <input type="number" id="daysB" placeholder="Örn: 120">
+            </div>
+        </div>
+    </div>
+
+    <button onclick="calculate()">Kıyasla ve En Mantıklıyı Bul</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(value);
+    }
+
+    // Bugünkü Değer (Present Value) Hesaplama Formülü: 
+    // PV = Gelecekteki Tutar / (1 + (Faiz Oranı * Vade / 365))
+    function calculatePresentValue(totalAmount, annualInterestRate, days) {
+        if (days === 0) return totalAmount;
+        const interestDecimal = annualInterestRate / 100;
+        return totalAmount / (1 + (interestDecimal * (days / 365)));
+    }
+
+    function calculate() {
+        const interest = parseFloat(document.getElementById('interest').value) || 0;
+        
+        const priceA = parseFloat(document.getElementById('priceA').value) || 0;
+        const qtyA = parseFloat(document.getElementById('qtyA').value) || 0;
+        const daysA = parseFloat(document.getElementById('daysA').value) || 0;
+        
+        const priceB = parseFloat(document.getElementById('priceB').value) || 0;
+        const qtyB = parseFloat(document.getElementById('qtyB').value) || 0;
+        const daysB = parseFloat(document.getElementById('daysB').value) || 0;
+
+        // Toplam nominal tutarlar
+        const totalA = priceA * qtyA;
+        const totalB = priceB * qtyB;
+
+        if (totalA === 0 || totalB === 0) {
+            alert("Lütfen her iki firma için de geçerli birim fiyat ve miktar giriniz.");
+            return;
+        }
+
+        // Bugünkü değer maliyetleri (Düşük olan daha avantajlıdır)
+        const pvA = calculatePresentValue(totalA, interest, daysA);
+        const pvB = calculatePresentValue(totalB, interest, daysB);
+
+        const resultDiv = document.getElementById('result');
+        const cardA = document.getElementById('cardA');
+        const cardB = document.getElementById('cardB');
+
+        // Stil sıfırlama
+        cardA.style.borderColor = 'var(--border)';
+        cardA.style.backgroundColor = 'transparent';
+        cardB.style.borderColor = 'var(--border)';
+        cardB.style.backgroundColor = 'transparent';
+
+        let winnerText = "";
+        let detailsText = "";
+        let diff = Math.abs(pvA - pvB);
+
+        detailsText = `
+            <div class="result-details">
+                <strong>Firma A:</strong> Toplam Ödeme: ${formatCurrency(totalA)} | Bugünkü Gerçek Maliyet: <span class="amount">${formatCurrency(pvA)}</span><br>
+                <strong>Firma B:</strong> Toplam Ödeme: ${formatCurrency(totalB)} | Bugünkü Gerçek Maliyet: <span class="amount">${formatCurrency(pvB)}</span>
+            </div>
+        `;
+
+        if (pvA < pvB) {
+            winnerText = `<strong>Firma A Daha Avantajlı!</strong> <br>Firma A'nın vadeli bugünkü gerçek maliyeti, Firma B'ye göre net <strong>${formatCurrency(diff)}</strong> daha düşüktür.`;
+            resultDiv.className = "winner";
+            cardA.style.borderColor = 'var(--success)';
+            cardA.style.backgroundColor = 'var(--success-light)';
+        } else if (pvB < pvA) {
+            winnerText = `<strong>Firma B Daha Avantajlı!</strong> <br>Firma B'nin vadeli bugünkü gerçek maliyeti, Firma A'ya göre net <strong>${formatCurrency(diff)}</strong> daha düşüktür.`;
+            resultDiv.className = "winner";
+            cardB.style.borderColor = 'var(--success)';
+            cardB.style.backgroundColor = 'var(--success-light)';
+        } else {
+            winnerText = "<strong>Her İki Teklif de Finansal Olarak Eşdeğer!</strong> <br>İki firmanın da faiz oranı hesaba katıldığında bugünkü maliyeti aynıdır.";
+            resultDiv.className = "";
+            resultDiv.style.backgroundColor = "#e2e8f0";
+        }
+
+        resultDiv.innerHTML = winnerText + detailsText;
+        resultDiv.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
